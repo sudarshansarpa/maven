@@ -84,7 +84,7 @@ mvn sonar:sonar \
 #### **Example:**  
 ```sh
 mvn sonar:sonar \
-    -Dsonar.projectKey=test \
+    -Dsonar.projectKey=user-registration \
     -Dsonar.host.url=https://sonarqube.techworldwithmurali.in \
     -Dsonar.login=400556b03e5e8664cd9d7ff0010fbab75373c3b5
 ```
