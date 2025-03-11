@@ -17,7 +17,7 @@ To install Maven on a Linux server, follow these steps:
 
 2. **Maven Version:** Determine the version of Maven you wish to install. For this example, we will use version 3.9.9.
 
-3. **Install Java 17:** 
+3. **Install Java 11:** 
    - First, install Java 11 using the following command:
      ```
      sudo yum install java-11-amazon-corretto-devel -y
@@ -58,7 +58,7 @@ export PATH=${M2_HOME}/bin:${PATH}
      
    - Set execute permissions for the configuration file:
      ```
-     sudo chmod +x /etc/profile.d/maven.sh
+     sudo chmod 777 /etc/profile.d/maven.sh
      ```
    - Load the Maven environment configuration:
      ```
