@@ -1,3 +1,12 @@
+#### INSTRUCTOR DETAILS
+
+|  Information             | Details                                                                      |
+|----------------------    |------------------------------------------------------------------------------|
+| **Name**                 | Moole Muralidhara Reddy                                                      |
+| **Email**                | techworldwithmurali@gmail.com                                                |
+| **Website**              | https://www.techworldwithmurali.com               |
+| **LinkedIn profile**     | [Moole Muralidhara Reddy](https://www.linkedin.com/in/moole-muralidhara-reddy) |
+
 ### Installation of Maven on Linux Server
 
 **Note:** For the latest releases and more information, visit the official website: https://maven.apache.org/download.cgi
