@@ -10,22 +10,22 @@
 
 ### What is a Build Tool?  
 
-A build tool is software used to automate the process of converting source code into executable applications. This process includes compiling, linking, and packaging the code into a usable or deployable format (e.g., `.jar` for Java applications).  
+- A **build tool** is software used to **automate** the process of converting source code into an **executable application**.  
+- This process includes **compiling, linking, and packaging** the code into a deployable format (e.g., `.jar` for Java applications, `.exe` for Windows applications).  
+- Build tools help manage dependencies, automate repetitive tasks, and ensure consistency in the software development lifecycle.  
 
 ### Types of Build Tools  
 
-There are various types of build tools available in DevOps, each catering to different languages and environments. The most common ones include:  
+Various build tools cater to different languages and environments. The most common ones include:  
 
-- **Apache Ant** – A Java-based build tool that uses XML configuration files.  
-- **Maven** – A widely used Java-based build automation tool that simplifies project management.  
-- **Gradle** – A modern build tool that supports Java, Kotlin, and Groovy, offering improved performance and flexibility.  
-
----
+- **Apache Ant** – A Java-based build tool that uses XML configuration files for task automation.  
+- **Maven** – A popular Java-based build automation and project management tool that simplifies dependency management and follows a convention-over-configuration approach.  
+- **Gradle** – A modern and flexible build tool supporting Java, Kotlin, and Groovy, known for its **performance optimizations** and **incremental builds**.  
 
 ## What is Maven?  
 
 - Maven is an open-source build automation and project management tool, primarily used for Java-based applications.
-- It simplifies the build process and ensures consistency across projects by managing dependencies, compiling source code, running tests, packaging applications, and deploying artifacts.  
+- It simplifies the build process and ensures consistency across projects by managing dependencies, compiling source code, running tests, packaging applications, and deploying artifacts.
 
 ### Key Features of Maven  
 
