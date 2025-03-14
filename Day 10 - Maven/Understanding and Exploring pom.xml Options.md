@@ -156,6 +156,8 @@
 ```xml
 <build>
     <plugins>
+ </plugins>
+    </build>
 ```
 ### Spring Boot Maven Plugin
 ```xml
