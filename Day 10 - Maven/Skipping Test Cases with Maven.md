@@ -15,13 +15,7 @@ mvn clean install -Dmaven.test.skip=true
 - `-Dmaven.test.skip=true`: Skips both compiling and running tests.
 
 ### 2. **Using the POM File**  
-If you want to permanently skip tests for a particular module, add this to your `pom.xml`:
-```xml
-<properties>
-    <skipTests>true</skipTests>
-</properties>
-```
-or configure the `maven-surefire-plugin`:
+Test skipping can also be configured directly in the pom.xml file under the <build> section. Here’s an example of how it can be configured:
 ```xml
 <build>
     <plugins>
