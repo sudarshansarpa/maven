@@ -51,7 +51,7 @@ In **Maven**, repositories are used to store dependencies, plugins, and other ar
        <repositories>
            <repository>
                <id>my-company-repo</id>
-               <url>https://repo.mycompany.com/maven2/</url>
+               <url>https://repo.techworldwithmurali.com/maven2/</url>
            </repository>
        </repositories>
        ```
