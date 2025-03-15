@@ -29,6 +29,8 @@ Various build tools cater to different languages and environments. The most comm
 
 - Maven is an open-source build automation and project management tool, primarily used for Java-based applications.
 - It simplifies the build process and ensures consistency across projects by managing dependencies, compiling source code, running tests, packaging applications, and deploying artifacts.
+- Maven was developed by Apache Software Foundation.
+- Maven is now maintained as an open-source project under the Apache License.
 
 ### Key Features of Maven  
 
