@@ -12,9 +12,9 @@
 
 - POM stands for Project Object Model.
 - It contains Maven project and configuration information needed to build the project, such as dependencies, build directory, source directory, test source directory, plugins, goals, etc.
-- Maven reads the pom.xml file and then executes the specified goals. Before Maven 2, this file was named project.xml.
-- Since Maven 2 (and in Maven 3), it has been renamed to pom.xml.
-
+- Maven reads the pom.xml file and then executes the specified goals.
+- Before Maven 2, this file was named project.xml.
+- Since Maven 2 (and in Maven 3), it has been renamed to pom.xml
 
 ### Mandatory Elements in `pom.xml`:
 
