@@ -12,7 +12,10 @@
 
 - A **build tool** is software used to **automate** the process of converting source code into an **executable application**.  
 - This process includes **compiling, linking, and packaging** the code into a deployable format (e.g., `.jar` for Java applications, `.exe` for Windows applications).  
-- Build tools help manage dependencies, automate repetitive tasks, and ensure consistency in the software development lifecycle.  
+- Build tools play a crucial role in software development by:  
+1. **Managing Dependencies** – Handling external libraries and ensuring the correct versions are used.  
+2. **Automating Repetitive Tasks** – Compiling code, running tests, packaging applications, and deploying software.  
+3. **Ensuring Consistency** – Standardizing build processes across different environments to reduce errors.  
 
 ### Types of Build Tools  
 
