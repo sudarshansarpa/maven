@@ -1,4 +1,4 @@
-Types of Maven Repository
+### Types of Maven Repository
 
 In **Maven**, repositories are used to store dependencies, plugins, and other artifacts. There are three main types of repositories:
 
