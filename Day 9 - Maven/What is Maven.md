@@ -35,7 +35,7 @@ Various build tools cater to different languages and environments. The most comm
 ### Key Features of Maven  
 
 #### 1. **Dependency Management**  
-Maven automatically downloads project dependencies from remote repositories such as the [Maven Central Repository](https://mvnrepository.com/), ensuring that the correct versions are used. Dependencies are managed in the `pom.xml` file.  
+Maven automatically downloads project dependencies from remote repositories such as the [Maven Central Repository](https://repo.maven.apache.org/maven2/), ensuring that the correct versions are used. Dependencies are managed in the `pom.xml` file.  
 
 #### 2. **Build Lifecycle**  
 Maven follows a defined lifecycle consisting of several phases:  
