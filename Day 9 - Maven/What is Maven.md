@@ -44,7 +44,7 @@ Maven follows a defined lifecycle consisting of several phases:
 - **Compile** – Compiles the source code.  
 - **Test** – Runs unit tests.  
 - **Package** – Packages the compiled code into JAR, WAR, or EAR files.  
-- **Verify** – Performs integration testing.  
+- **Verify** – runs unit tests + integration tests and ensures the build meets all required conditions.
 - **Install** – Installs the package locally for further use.  
 - **Deploy** – Deploys the packaged application to a remote repository.  
 
