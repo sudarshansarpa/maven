@@ -202,3 +202,121 @@
    - Useful for debugging HTTPS issues. 🚀  
 
 ---
+### **Linux Basic Commands - Part 4**
+
+**1. `who` and `whoami`**
+- **`who`** → Displays the users currently logged into the system.
+  ```sh
+  who
+  ```
+  **Example Output:**
+  ```
+  e2-user  pts/0  2025-03-17 08:30 (192.168.1.10)
+  root  pts/1  2025-03-17 08:45 (192.168.1.11)
+  ```
+
+- **`whoami`** → Displays the current logged-in user's name.
+  ```sh
+  whoami
+  ```
+  **Example Output:**
+  ```
+  root
+  ```
+
+**2. `wget`**
+- **Purpose**: Downloads files from the internet.
+- **Example Usage**:
+  ```sh
+  wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip
+  ```
+  - Downloads `file.zip` from `example.com`.
+
+  **Other useful options:**
+  - Download in the background:
+    ```sh
+    wget -b https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip
+    ```
+  - Resume a partially downloaded file:
+    ```sh
+    wget -c https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip
+    ```
+
+**3. `grep`**
+- **Purpose**: Searches for text patterns in files.
+- **Example Usage**:
+  ```sh
+  grep "error" /var/log/syslog
+  ```
+  - Searches for the word "error" in the system log file.
+
+  **Other useful options:**
+  - Case-insensitive search:
+    ```sh
+    grep -i "error" /var/log/syslog
+    ```
+  - Search in multiple files:
+    ```sh
+    grep "error" *.log
+    ```
+
+**4. `tree`**
+- **Purpose**: Displays directories and files in a tree-like structure.
+- **Example Usage**:
+  ```sh
+  tree /opt/aws
+  ```
+  - Shows a tree structure of the `/home/user` directory.
+
+  **Note**: If `tree` is not installed, you can install it using:
+  ```sh
+  sudo apt install tree  # For Debian-based systems
+  sudo yum install tree  # For RHEL-based systems
+  ```
+
+**5. `last`**
+- **Purpose**: Displays the login history of users.
+- **Example Usage**:
+  ```sh
+  last
+  ```
+  **Example Output:**
+  ```
+  ec2-user   pts/0        192.168.1.10   Mon Mar 17 08:30   still logged in
+  root   pts/1        192.168.1.11   Mon Mar 17 08:45   still logged in
+  reboot  system boot  5.4.0-91-generic Mon Mar 17 08:00
+  ```
+
+  **Other useful options:**
+  - Show reboots:
+    ```sh
+    last reboot
+    ```
+  - Show login history of a specific user:
+    ```sh
+    last user1
+    ```
+    
+**6. `shutdown`**
+- **Purpose**: Shuts down or reboots the system.
+- **Example Usage**:
+  - Shutdown immediately:
+    ```sh
+    sudo shutdown now
+    ```
+  - Schedule shutdown in 10 minutes:
+    ```sh
+    sudo shutdown +10
+    ```
+  - Shutdown at a specific time (e.g., 22:00):
+    ```sh
+    sudo shutdown 22:00
+    ```
+  - Reboot instead of shutdown:
+    ```sh
+    sudo shutdown -r now
+    ```
+  - Cancel a scheduled shutdown:
+    ```sh
+    sudo shutdown -c
+    ```
