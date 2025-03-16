@@ -49,7 +49,8 @@
      ls -lh      # Human-readable file sizes
      ls -ltr     # List in long format, sorted by modification time (oldest first)
      ```
-     ---
+
+---
 ### **Linux Basic Commands - Part 2**  
 
 1. **`cal` (Show Calendar)**  
