@@ -163,52 +163,38 @@
      ```
    - To stop, press **Ctrl + C**.  
 
-Here’s your structured format with numbering like **4.1, 4.2, etc.** for clarity:
-
----
-
-### **4. `curl` (Transfer Data from URLs)**  
+**4. `curl` (Transfer Data from URLs)**  
    - Fetches data from a given URL.  
    - **Example:**  
      ```bash
      curl https://techworldwithmurali.com
      ```
 
----
-
-### **4.1 Download a File (-O option)**  
+**4.1 Download a File (-O option)**  
    ```bash
    curl -O https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
    ```
    - Downloads the file with the same name as on the server.  
 
----
-
-### **4.2 Download and Save with a Different Name (-o option)**  
+**4.2 Download and Save with a Different Name (-o option)**  
    ```bash
    curl -o maven.tar.gz https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
    ```
    - Saves the file as `maven.tar.gz` instead of the original name.  
 
----
-
-### **4.3 Ignore SSL Certificate Warnings (-k option)**  
+**4.3 Ignore SSL Certificate Warnings (-k option)**  
    ```bash
    curl -k https://techworldwithmurali.com
    ```
    - Allows connecting to a server with a self-signed or invalid SSL certificate.  
 
----
-
-### **4.4 Enable Verbose Mode (-v option)**  
+**4.4 Enable Verbose Mode (-v option)**  
    ```bash
    curl -v https://techworldwithmurali.com
    ```
    - Shows detailed request/response headers and connection details.  
 
----
-
-### **4.5 Combine `-k` and `-v` (-kv option)**  
+**4.5 Combine `-k` and `-v` (-kv option)**  
    ```bash
    curl -kv https://techworldwithmurali.com
    ```
