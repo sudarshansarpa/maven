@@ -11,21 +11,18 @@
 
 The **Linux directory structure** is a hierarchical organization of files and directories, starting from the **root (`/`) directory**. It follows the **Filesystem Hierarchy Standard (FHS)**, which defines standard locations for different types of files and directories in Linux-based operating systems.
 
----
-
 ### **Why is the Linux Directory Structure Important?**
 - Provides a **standardized way** to organize files.
 - Helps users and applications locate system files, configurations, and binaries.
 - Ensures proper **separation of system files, user data, and temporary files**.
 - Allows **multiple users** to operate on the same system efficiently.
 
----
+## **Hierarchy of Linux Directories**  
+The Linux filesystem starts at **`/` (root directory)**, which contains all other directories and files.  
 
-### **Hierarchy of Linux Directories**
-The Linux filesystem starts at **`/` (root directory)**, which contains all other directories and files.
+### **Main Directories in Linux**  
 
-#### **Main Directories in Linux**
-
+```
 /               → Root directory (top-level of the filesystem).
 ├── /bin        → User Binaries
 ├── /boot       → Boot Loader Files
@@ -46,6 +43,7 @@ The Linux filesystem starts at **`/` (root directory)**, which contains all othe
 ├── /usr        → User Programs
 ├── /var        → Variable Files
 └── /lost+found → Misplaced Data (Used for Recovery)
+```
 
 ### Detailed explanation of the **Linux Directory Structure** :
 
