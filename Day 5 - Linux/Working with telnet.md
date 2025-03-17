@@ -1,1 +1,95 @@
-### Working with telnet
+#### INSTRUCTOR DETAILS
+
+|  Information             | Details                                                                      |
+|----------------------    |------------------------------------------------------------------------------|
+| **Name**                 | Moole Muralidhara Reddy                                                      |
+| **Email**                | techworldwithmurali@gmail.com                                                |
+| **Website**              | https://www.techworldwithmurali.com               |
+| **LinkedIn profile**     | [Moole Muralidhara Reddy](https://www.linkedin.com/in/moole-muralidhara-reddy) |
+
+# **Working with `telnet` Command in Linux & Windows**  
+
+The `telnet` command is used to establish a **remote connection** to another system using the **Telnet protocol**. It allows users to connect to remote machines and execute commands as if they were sitting in front of them.  
+
+⚠️ **Note:**  
+- **Telnet is insecure** because it does not encrypt data. Use **SSH (`ssh` command) instead** for secure remote access.  
+- Telnet is mostly used for **testing network connectivity** and **checking open ports**.  
+
+
+## **1. Install Telnet (If Not Installed)**  
+
+### **Linux (CentOS/RHEL)**
+```sh
+yum install telnet -y   # For RHEL/CentOS
+```
+### **Linux (Ubuntu/Debian)**
+```sh
+sudo apt install telnet -y  # For Ubuntu/Debian
+```
+### **Windows**
+- Open **Command Prompt (`cmd`)** with Administrator privileges.
+- Run:
+  ```sh
+  dism /online /Enable-Feature /FeatureName:TelnetClient
+  ```
+
+## **2. Check If a Port Is Open on a Remote Server**  
+```sh
+telnet <server_ip> <port>
+```
+✅ Example: Check if port **22** (SSH) is open on **192.168.1.100**  
+```sh
+telnet 192.168.1.100 22
+```
+- If the port is **open**, you will see a connection message.
+- If the port is **closed**, it will show **Connection refused**.
+
+✅ Example: Check if **port 80** (HTTP) is open  
+```sh
+telnet google.com 80
+```
+
+## **3. Connect to a Remote System Using Telnet**
+```sh
+telnet <remote-host>
+```
+✅ Example: Connect to a remote server  
+```sh
+telnet 192.168.1.50
+```
+- If **Telnet is enabled** on the remote system, you will get a login prompt.
+
+## **4. Sending HTTP Requests Using Telnet**  
+You can manually send HTTP requests to a web server using Telnet.
+
+### **Example: Send a GET Request to a Web Server**
+```sh
+telnet google.com 80
+```
+Then type:
+```sh
+GET / HTTP/1.1
+Host: google.com
+```
+Press **Enter** twice, and you'll get an HTTP response from the server.
+
+## **5. Exit a Telnet Session**  
+To exit Telnet, type:
+```sh
+exit
+```
+or press  
+```sh
+CTRL + ]
+```
+Then type:
+```sh
+quit
+```
+
+## **6. Alternative to Telnet: `nc` (Netcat) for Port Testing**  
+Since `telnet` is outdated, `nc` (Netcat) is a better alternative for checking open ports.
+```sh
+nc -zv 192.168.1.100 22
+```
+✅ This checks if **port 22** (SSH) is open.
