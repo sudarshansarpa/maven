@@ -7,11 +7,12 @@
 | **Website**              | https://www.techworldwithmurali.com               |
 | **LinkedIn profile**     | [Moole Muralidhara Reddy](https://www.linkedin.com/in/moole-muralidhara-reddy) |
 
-# **Working with `cp` and `mv` Commands in Linux**  
+
+## **Working with `cp` and `mv` Commands in Linux**  
 
 In Linux, you can use the `cp` command to **copy** files and directories and the `mv` command to **move or rename** them.  
 
-## **1. `cp` Command (Copy Files and Directories)**  
+### **1. `cp` Command (Copy Files and Directories)**  
 
 The `cp` command is used to copy files or directories from one location to another.  
 
