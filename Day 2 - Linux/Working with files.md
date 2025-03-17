@@ -29,8 +29,6 @@ ls -l myfile.txt
 ```  
 📌 **Output:** Creates an empty file named `myfile.txt`.  
 
----
-
 **2. `cat` Command**  
 The `cat` (concatenate) command is widely used for **viewing, creating, appending, and copying files**.  
 
