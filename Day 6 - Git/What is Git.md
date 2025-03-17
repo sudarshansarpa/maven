@@ -1,0 +1,71 @@
+#### INSTRUCTOR DETAILS
+
+|  Information             | Details                                                                      |
+|----------------------    |------------------------------------------------------------------------------|
+| **Name**                 | Moole Muralidhara Reddy                                                      |
+| **Email**                | techworldwithmurali@gmail.com                                                |
+| **Website**              | https://www.techworldwithmurali.com               |
+| **LinkedIn profile**     | [Moole Muralidhara Reddy](https://www.linkedin.com/in/moole-muralidhara-reddy) |
+
+## **What is Git?**  
+Git is a **distributed version control system (VCS)** used for tracking changes in code, managing source code efficiently, and enabling multiple developers to collaborate on a project. It helps maintain a history of changes, allowing users to revert to previous versions if needed.
+
+✅ **Key Features of Git:**  
+- Tracks changes in files efficiently.  
+- Supports multiple developers working simultaneously.  
+- Provides a history of all changes made in a project.  
+- Supports branching and merging for better workflow management.  
+- Works offline—developers can commit changes without an internet connection.  
+
+## **Advantages of Git**  
+
+### 1️⃣ **Open Source & Free**  
+Git is completely **free to use** and **open-source**, making it a popular choice for developers worldwide.  
+
+### 2️⃣ **Flexibility**  
+Git can be used for **small-scale personal projects** as well as **large-scale enterprise applications**. It supports **different workflows**, allowing teams to choose what best suits their needs.  
+
+### 3️⃣ **Security**  
+Git uses **SHA-1 (Secure Hash Algorithm 1)** to **protect** the integrity of the codebase. This prevents malicious code alterations.  
+
+### 4️⃣ **Cross-Platform Support**  
+Git runs on **Linux, Windows, and macOS**, making it highly accessible for all developers.  
+
+### 5️⃣ **Branching & Merging**  
+Git supports **lightweight branching**, allowing developers to work on multiple features **independently**. Once a feature is completed, it can be **merged** back into the main project.  
+
+## **Types of Version Control Systems (VCS)**  
+
+A **Version Control System (VCS)** is a tool that tracks changes to code, documents, or files. There are three main types:  
+
+### 1️⃣ **Local Version Control System (LVCS)**  
+- Stores versions on a local machine.  
+- Example: RCS (Revision Control System).  
+
+### 2️⃣ **Centralized Version Control System (CVCS)**  
+- A **single central server** manages all versions.  
+- Developers work with a **central repository** over the network.  
+- **Disadvantage:** If the server crashes, all data may be lost.  
+- **Example:** **SVN (Subversion), TFS (Team Foundation Server)**.  
+
+### 3️⃣ **Distributed Version Control System (DVCS)**  
+- Each developer has a **complete copy** of the repository.  
+- Code is **not dependent on a central server**.  
+- Offers **faster performance** and **better collaboration**.  
+- **Example:** **Git, Mercurial**.  
+
+📌 **Comparison:**  
+
+| Feature  | Git (DVCS) | SVN (CVCS) | TFS (CVCS) |
+|----------|------------|------------|------------|
+| **Speed** | Fast | Slower | Slower |
+| **Branching** | Easy & cheap | Difficult | Difficult |
+| **Offline Work** | Yes | No | No |
+| **Centralized Server Required?** | No | Yes | Yes |
+| **Security** | High (SHA-1 encryption) | Medium | Medium |
+| **Used By** | GitHub, GitLab, Bitbucket | Some legacy projects | Microsoft Teams |
+
+## **Why Git Over SVN & TFS?**  
+✅ Git is **faster**, **more secure**, and **supports distributed development**.  
+✅ Git allows **offline work**, whereas SVN & TFS require a network connection.  
+✅ Git’s **branching and merging** capabilities are more advanced than SVN & TFS.  
