@@ -1,1 +1,169 @@
-### Working with nslookup
+#### INSTRUCTOR DETAILS
+
+|  Information             | Details                                                                      |
+|----------------------    |------------------------------------------------------------------------------|
+| **Name**                 | Moole Muralidhara Reddy                                                      |
+| **Email**                | techworldwithmurali@gmail.com                                                |
+| **Website**              | https://www.techworldwithmurali.com               |
+| **LinkedIn profile**     | [Moole Muralidhara Reddy](https://www.linkedin.com/in/moole-muralidhara-reddy) |
+
+# **Working with `nslookup` Command in Linux & Windows**  
+
+The `nslookup` (**Name Server Lookup**) command is used to **query DNS (Domain Name System) records**. It helps troubleshoot **network and DNS-related issues** by retrieving information about domain names, IP addresses, and mail servers.  
+
+## **1️⃣ Basic Syntax**  
+```sh
+nslookup <domain_name>
+```
+or  
+```sh
+nslookup <IP_address>
+```
+
+✅ **Example: Get the IP address of `demo.techworldwithmurali.com`**  
+```sh
+nslookup demo.techworldwithmurali.com
+```
+📌 **Output Example:**
+```
+Server:  8.8.8.8
+Address: 8.8.8.8#53
+
+Non-authoritative answer:
+Name:    demo.techworldwithmurali.com
+Address: 192.168.1.50
+```
+- The **"Non-authoritative answer"** means the response is from a **cached DNS record**, not directly from the authoritative name server.
+- The **"Address"** field shows the **IP address** assigned to `demo.techworldwithmurali.com`.
+
+## **2️⃣ Perform a Reverse Lookup (PTR Record)**
+Find the domain name linked to an IP address.
+
+✅ **Example: Find the domain name for `192.168.1.50`**  
+```sh
+nslookup 192.168.1.50
+```
+📌 **Output Example:**
+```
+Server:  8.8.8.8
+Address: 8.8.8.8#53
+
+50.1.168.192.in-addr.arpa name = demo.techworldwithmurali.com.
+```
+- This confirms that **`192.168.1.50`** is mapped to **`demo.techworldwithmurali.com`**.
+
+## **3️⃣ Query Using a Specific DNS Server**  
+Test how different DNS servers resolve the domain.
+
+✅ **Using Google’s Public DNS (`8.8.8.8`)**  
+```sh
+nslookup demo.techworldwithmurali.com 8.8.8.8
+```
+✅ **Using Cloudflare’s DNS (`1.1.1.1`)**  
+```sh
+nslookup demo.techworldwithmurali.com 1.1.1.1
+```
+📌 This is useful for troubleshooting **DNS propagation issues**.
+
+## **4️⃣ Get MX (Mail Exchange) Records**  
+MX records determine which mail servers handle emails.
+
+✅ **Example: Find the mail servers for `techworldwithmurali.com`**  
+```sh
+nslookup -query=mx techworldwithmurali.com
+```
+📌 **Output Example:**
+```
+techworldwithmurali.com mail exchanger = 10 mail1.techworldwithmurali.com.
+techworldwithmurali.com mail exchanger = 20 mail2.techworldwithmurali.com.
+```
+- **Lower numbers (10, 20, etc.) indicate higher priority mail servers**.
+
+## **5️⃣ Get NS (Name Server) Records**  
+NS records show the **authoritative DNS servers** for a domain.
+
+✅ **Example: Find the name servers for `techworldwithmurali.com`**  
+```sh
+nslookup -query=ns techworldwithmurali.com
+```
+📌 **Output Example:**
+```
+techworldwithmurali.com nameserver = ns1.techworldwithmurali.com.
+techworldwithmurali.com nameserver = ns2.techworldwithmurali.com.
+```
+- This means the domain uses **ns1.techworldwithmurali.com** and **ns2.techworldwithmurali.com** as its name servers.
+
+## **6️⃣ Get A (Address) and CNAME (Canonical Name) Records**  
+
+✅ **Example: Get only the A record (IP address) for `demo.techworldwithmurali.com`**  
+```sh
+nslookup -query=A demo.techworldwithmurali.com
+```
+✅ **Example: Get the CNAME record (alias for a domain)**  
+```sh
+nslookup -query=CNAME demo.techworldwithmurali.com
+```
+📌 **Output Example:**
+```
+demo.techworldwithmurali.com canonical name = app.techworldwithmurali.com.
+```
+- This means **`demo.techworldwithmurali.com`** is an **alias** (CNAME) for **`app.techworldwithmurali.com`**.
+
+## **7️⃣ Get SOA (Start of Authority) Record**  
+SOA records contain administrative details about a domain’s DNS.
+
+✅ **Example: Find SOA record for `techworldwithmurali.com`**  
+```sh
+nslookup -query=SOA techworldwithmurali.com
+```
+📌 **Output Example:**
+```
+techworldwithmurali.com
+        primary name server = ns1.techworldwithmurali.com
+        responsible mail addr = admin.techworldwithmurali.com
+        serial = 2024031701
+        refresh = 3600
+        retry   = 900
+        expire  = 604800
+        default TTL = 86400
+```
+- **Primary name server:** `ns1.techworldwithmurali.com`
+- **Admin email:** `admin@techworldwithmurali.com`
+- **Serial number:** Used for tracking DNS updates.
+
+## **8️⃣ Enable Interactive Mode (`nslookup` Shell)**  
+To enter interactive mode, just type:  
+```sh
+nslookup
+```
+Now you can type multiple queries, like:  
+```sh
+> set type=MX
+> techworldwithmurali.com
+> set type=A
+> demo.techworldwithmurali.com
+```
+To **exit**, type:
+```sh
+> exit
+```
+
+## **9️⃣ Get Detailed Debugging Information**  
+The `debug` mode provides more details about DNS queries.
+
+✅ **Enable debugging mode:**  
+```sh
+nslookup
+> set debug
+> demo.techworldwithmurali.com
+> exit
+```
+
+# **Windows vs. Linux Differences**
+| Feature        | Windows | Linux |
+|---------------|---------|-------|
+| Basic Lookup  | ✅ `nslookup demo.techworldwithmurali.com` | ✅ `nslookup demo.techworldwithmurali.com` |
+| Reverse Lookup | ✅ `nslookup 192.168.1.50` | ✅ `nslookup 192.168.1.50` |
+| Query MX Records | ✅ `nslookup -query=mx techworldwithmurali.com` | ✅ `nslookup -type=mx techworldwithmurali.com` |
+| Query NS Records | ✅ `nslookup -query=ns techworldwithmurali.com` | ✅ `nslookup -type=ns techworldwithmurali.com` |
+| Interactive Mode | ✅ `nslookup` → then enter commands | ✅ `nslookup` → then enter commands |
