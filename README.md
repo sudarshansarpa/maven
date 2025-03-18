@@ -1,3 +1,7 @@
+**40 Days of DevOps: Zero to Hero 🚀**
+
+A comprehensive **40 Days of DevOps: Zero to Hero** roadmap covering key tools and practices, including **Linux**, **Git**, **Maven**, **Nexus**, **JFrog**, **SonarQube**, **Jenkins**, **Ansible**, **Docker**, and **CI/CD automation** using **pipelines** and **shared libraries**.
+
 ### **Day 1: DevOps Overview**  
 - Waterfall & Agile Methodology Overview  
 - DevOps Overview  
