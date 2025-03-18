@@ -276,4 +276,6 @@ A comprehensive **40 Days of DevOps: Zero to Hero** roadmap covering key tools a
 - Automating Kubernetes Deployment with Helm and Shared Libraries  
 
 ### **Day 40 - Other Ways to Install Jenkins**  
-- Installing Jenkins on Kubernetes using Helm  
+- Installing Jenkins on Kubernetes using Helm
+
+**Congratulations!** You've successfully completed the 40 Days of DevOps: Zero to Hero. Now, you're all set to confidently attend interviews and crack them!
