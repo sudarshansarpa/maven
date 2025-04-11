@@ -19,14 +19,14 @@ A comprehensive **40 Days of DevOps: Zero to Hero** roadmap covering key tools a
 - Working with files  
 - Working with directories  
 - Working with `cp` & `mv` commands  
-- Working with soft, hard links, and inode numbers  
+- Working with soft, hard link, and inode numbers  
 
 ### **Day 3 - Linux**  
+- Creating and deleting users in Linux  
+- Creating and deleting groups in Linux  
 - Working with file permissions  
 - Working with file ownership  
 - Working with `rm` command  
-- Creating and deleting users in Linux  
-- Creating and deleting groups in Linux  
 - Working with `head` & `tail`  
 - Working with `top` & `free` commands  
 - Working with `tar` command  
