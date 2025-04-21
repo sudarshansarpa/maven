@@ -2,6 +2,9 @@
 
 A comprehensive, structured **40-day** learning journey that takes you from foundational knowledge to practical, job-ready skills. This roadmap is perfect for beginners to experienced professionals and those looking to solidify their DevOps understanding.
 
+
+![40 Days of DevOps Zero to  Hero Roadmap and Syllabus - Moole Muralidhara Reddy - TechWorld with Murali](https://github.com/user-attachments/assets/d75548d2-4f14-448e-9b35-81008fea4cea)
+
 ### **Day 1: DevOps Overview**  
 - Waterfall & Agile Methodology Overview  
 - DevOps Overview  
