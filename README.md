@@ -1,4 +1,4 @@
-![40 Days of DevOps Zero to  Hero Roadmap and Syllabus - Moole Muralidhara Reddy - TechWorld with Murali](https://github.com/user-attachments/assets/d75548d2-4f14-448e-9b35-81008fea4cea)
+![40 Days of DevOps Zero to  Hero Roadmap and Syllabus - Moole Muralidhara Reddy - TechWorld with Murali](https://github.com/user-attachments/assets/02f4a135-2619-4d39-ac8f-a8723d3abe95)
 
 
 **40 Days of DevOps: Zero to Hero 🚀**
