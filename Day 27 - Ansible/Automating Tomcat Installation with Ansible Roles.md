@@ -41,6 +41,7 @@ tomcat/
 This file defines the **default variables** used throughout the role. You can override these in your playbooks.
 
 ```yaml
+---
 tomcat_version: "9.0.104"
 tomcat_install_path: "/opt"
 tomcat_user: "tomcat"
