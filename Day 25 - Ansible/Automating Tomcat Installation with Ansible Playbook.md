@@ -251,8 +251,15 @@ Starts Tomcat immediately and ensures it starts automatically on boot.
 
 ```xml
 <tomcat-users>
-  <role rolename="manager-gui"/>
-  <user username="admin" password="admin" roles="manager-gui"/>
+<role rolename="manager-gui" />
+<role rolename="manager-status" />
+<role rolename="manager-script" />
+<role rolename="manager-jmx" />
+<role rolename="admin-gui" />
+<role rolename="admin-script" />
+
+<user username="tomcat" password="tomcat" roles="manager-gui,admin-script, admin-gui,manager-status,manager-script,manager-jmx"/>
+
 </tomcat-users>
 ```
 
