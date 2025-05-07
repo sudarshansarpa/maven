@@ -1,0 +1,83 @@
+---
+- name: Apache Tomcat Installation and Setup
+  hosts: localhost
+  become: true
+  vars:
+    tomcat_version: "9.0.104"
+    tomcat_install_path: "/opt"
+    tomcat_user: "tomcat"
+    tomcat_group: "tomcat"
+    tomcat_dir: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
+    tomcat_tarball: "{{ tomcat_dir }}.tar.gz"
+    tomcat_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+  tasks:
+    - name: Verify connectivity to host
+      ping:
+    - name: Install Java 11 (Amazon Corretto)
+      yum:
+        name: java-11-amazon-corretto-devel
+        state: present
+    - name: Add group "{{ tomcat_group }}"
+      group:
+        name: "{{ tomcat_group }}"
+        state: present
+
+    - name: Add user "{{ tomcat_user }}" and assign to group
+      user:
+        name: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+        create_home: yes
+        state: present
+
+    - name: Check if Tomcat tarball exists
+      stat:
+        path: "{{ tomcat_tarball }}"
+      register: tomcat_tarball_stat
+
+    - name: Download Apache Tomcat
+      get_url:
+        url: "{{ tomcat_url }}"
+        dest: "{{ tomcat_tarball }}"
+        mode: '0644'
+      when: not tomcat_tarball_stat.stat.exists
+
+    - name: Check if Tomcat is already extracted
+      stat:
+        path: "{{ tomcat_dir }}"
+      register: tomcat_extract_stat
+
+    - name: Extract Tomcat archive
+      unarchive:
+        src: "{{ tomcat_tarball }}"
+        dest: "{{ tomcat_install_path }}"
+        remote_src: yes
+      when: not tomcat_extract_stat.stat.exists
+
+    - name: Set ownership of Tomcat directory
+      file:
+        path: "{{ tomcat_dir }}"
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+        state: directory
+        recurse: yes
+
+    - name: Deploy tomcat-users.xml configuration
+      copy:
+        src: tomcat-users.xml
+        dest: "{{ tomcat_dir }}/conf/"
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+        mode: '0644'
+        backup: yes
+
+    - name: Install tomcat systemd service file
+      copy:
+        src: tomcat.service
+        dest: /etc/systemd/system/tomcat.service
+        mode: '0755'
+
+    - name: Start and enable Tomcat service
+      systemd:
+        name: tomcat
+        state: restarted
+        enabled: true
