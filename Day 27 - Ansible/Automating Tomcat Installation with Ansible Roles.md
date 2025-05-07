@@ -1,80 +1,221 @@
-## ✅ **Tomcat Installation Using Ansible Role**
 
-### 🧱 Steps Performed:
+#### INSTRUCTOR DETAILS
 
-1. Create a group `tomcat`
-2. Create a user `tomcat` and add it to the group
-3. Download Apache Tomcat
-4. Extract the tarball
-5. Change ownership to the tomcat user
-6. Copy `tomcat-users.xml` configuration
-7. Copy `tomcat.service` systemd unit
-8. Start and enable the Tomcat service
+|  Information             | Details                                                                      |
+|----------------------    |------------------------------------------------------------------------------|
+| **Name**                 | Moole Muralidhara Reddy                                                      |
+| **Email**                | techworldwithmurali@gmail.com                                                |
+| **Website**              | https://www.techworldwithmurali.com               |
+| **LinkedIn profile**     | [Moole Muralidhara Reddy](https://www.linkedin.com/in/moole-muralidhara-reddy) |
 
----
 
-## 🧱 Role Directory Structure
+# 🚀 Apache Tomcat Ansible Role (Beginner Friendly)
 
-```
-roles/
-└── tomcat/
-    ├── defaults/
-    │   └── main.yml
-    ├── files/
-    │   └── tomcat-users.xml
-    ├── handlers/
-    │   └── main.yml
-    ├── tasks/
-    │   └── main.yml
-    ├── templates/
-    │   └── tomcat.service.j2
-    └── vars/
-        └── main.yml
-```
+This Ansible **role** automates the installation and setup of **Apache Tomcat 9.0.104**, using best practices with a clean directory structure. It installs dependencies (Java), downloads Tomcat, sets permissions, configures users, and runs Tomcat as a service.
 
 ---
 
-### 🔧 `defaults/main.yml`
+## 🗂️ Tomcat Role Directory Structure
 
-User-overridable settings:
+```
+tomcat/
+├── defaults/
+│   └── main.yml            # Default variables for the role
+├── files/
+│   ├── tomcat-users.xml    # Custom users/roles config for Tomcat
+│   └── tomcat.service      # systemd service file to manage Tomcat
+├── tasks/
+│   └── main.yml            # Main logic - series of tasks to run
+├── handlers/
+│   └── main.yml            # Defines service restart/reload operations
+├── vars/
+│   └── main.yml            # Optional: higher priority variables
+├── meta/
+│   └── main.yml            # Optional: role metadata (author, dependencies)
+```
+
+---
+
+## 🔧 `defaults/main.yml`
+
+This file defines the **default variables** used throughout the role. You can override these in your playbooks.
 
 ```yaml
-tomcat_version: 9.0.85
-tomcat_user: tomcat
-tomcat_group: tomcat
-tomcat_install_dir: /opt
-tomcat_http_port: 8080
+tomcat_version: "9.0.104"
+tomcat_install_path: "/opt"
+tomcat_user: "tomcat"
+tomcat_group: "tomcat"
+tomcat_dir: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
+tomcat_tarball: "{{ tomcat_dir }}.tar.gz"
+tomcat_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
 ```
+
+**Explanation for Students:**
+
+* Variables like `tomcat_version` make the role reusable for other versions.
+* `tomcat_dir` and `tomcat_tarball` are **derived variables** using other values.
 
 ---
 
-### 📦 `vars/main.yml`
+## 📜 `tasks/main.yml`
 
-Internal values derived from variables:
+This is the **heart of the role**. It contains a list of ordered tasks to install and configure Tomcat.
 
 ```yaml
-tomcat_archive: apache-tomcat-{{ tomcat_version }}.tar.gz
-tomcat_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/{{ tomcat_archive }}
-tomcat_home: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+---
+- name: Verify connectivity to host
+  ping:
 ```
+
+Checks that the playbook can reach the host.
+
+```yaml
+- name: Install Java 11 (Amazon Corretto)
+  yum:
+    name: java-11-amazon-corretto-devel
+    state: present
+```
+
+Installs Java, which is required for running Tomcat.
+
+```yaml
+- name: Add group "{{ tomcat_group }}"
+  group:
+    name: "{{ tomcat_group }}"
+    state: present
+```
+
+Creates a Linux group for Tomcat.
+
+```yaml
+- name: Add user "{{ tomcat_user }}" and assign to group
+  user:
+    name: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    create_home: yes
+    state: present
+```
+
+Creates a Tomcat user and assigns it to the Tomcat group.
+
+```yaml
+- name: Check if Tomcat tarball exists
+  stat:
+    path: "{{ tomcat_tarball }}"
+  register: tomcat_tarball_stat
+```
+
+Checks if the `.tar.gz` archive has already been downloaded.
+
+```yaml
+- name: Download Apache Tomcat
+  get_url:
+    url: "{{ tomcat_url }}"
+    dest: "{{ tomcat_tarball }}"
+    mode: '0644'
+  when: not tomcat_tarball_stat.stat.exists
+```
+
+Downloads Tomcat only if it isn’t already downloaded.
+
+```yaml
+- name: Check if Tomcat is already extracted
+  stat:
+    path: "{{ tomcat_dir }}"
+  register: tomcat_extract_stat
+```
+
+Checks if Tomcat is already extracted in the destination path.
+
+```yaml
+- name: Extract Tomcat archive
+  unarchive:
+    src: "{{ tomcat_tarball }}"
+    dest: "{{ tomcat_install_path }}"
+    remote_src: yes
+  when: not tomcat_extract_stat.stat.exists
+```
+
+Unzips the archive to the `/opt` directory.
+
+```yaml
+- name: Set ownership of Tomcat directory
+  file:
+    path: "{{ tomcat_dir }}"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    state: directory
+    recurse: yes
+```
+
+Ensures that all files/folders under Tomcat are owned by the right user/group.
+
+```yaml
+- name: Deploy tomcat-users.xml configuration
+  copy:
+    src: tomcat-users.xml
+    dest: "{{ tomcat_dir }}/conf/"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    mode: '0644'
+    backup: yes
+```
+
+Deploys the user roles configuration (`manager-gui`, etc.).
+
+```yaml
+- name: Install tomcat systemd service file
+  copy:
+    src: tomcat.service
+    dest: /etc/systemd/system/tomcat.service
+    mode: '0755'
+```
+
+Adds a custom systemd service file so Tomcat can be managed using `systemctl`.
+
+```yaml
+- name: Start and enable Tomcat service
+  systemd:
+    name: tomcat
+    state: restarted
+    enabled: true
+  notify: Restart Tomcat
+```
+
+Starts Tomcat now and also ensures it starts at boot. If changes are made, it will notify the handler to restart Tomcat.
 
 ---
 
-### 📁 `files/tomcat-users.xml`
+## 🔄 `handlers/main.yml`
 
-Add secure users for `admin-gui`/`manager-gui`:
+Handlers are triggered when notified by a task.
+
+```yaml
+---
+- name: Restart Tomcat
+  systemd:
+    name: tomcat
+    state: restarted
+```
+
+This restarts the Tomcat service if the configuration has changed.
+
+---
+
+## 🧾 Sample `files/tomcat-users.xml`
 
 ```xml
 <tomcat-users>
-  <user username="admin" password="StrongP@ssword" roles="manager-gui,admin-gui"/>
+  <role rolename="manager-gui"/>
+  <user username="admin" password="admin" roles="manager-gui"/>
 </tomcat-users>
 ```
 
+This allows login to the Tomcat web interface using **admin/admin**.
+
 ---
 
-### 🧾 `templates/tomcat.service.j2`
-
-Templated systemd service file:
+## 🧾 Sample `files/tomcat.service`
 
 ```ini
 [Unit]
@@ -83,114 +224,46 @@ After=network.target
 
 [Service]
 Type=forking
-User={{ tomcat_user }}
-Group={{ tomcat_group }}
-ExecStart={{ tomcat_home }}/bin/startup.sh
-ExecStop={{ tomcat_home }}/bin/shutdown.sh
-Restart=on-failure
+User=tomcat
+Group=tomcat
+ExecStart=/opt/apache-tomcat-9.0.104/bin/startup.sh
+ExecStop=/opt/apache-tomcat-9.0.104/bin/shutdown.sh
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
 ```
 
+This lets systemd manage Tomcat as a background service.
+
 ---
 
-### 🚀 `tasks/main.yml`
+## 🧪 Sample `playbook.yml` to Call This Role
 
 ```yaml
 ---
-- name: Ensure group exists
-  group:
-    name: "{{ tomcat_group }}"
-
-- name: Ensure user exists
-  user:
-    name: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
-    shell: /bin/bash
-    create_home: yes
-
-- name: Download Tomcat
-  get_url:
-    url: "{{ tomcat_url }}"
-    dest: "{{ tomcat_install_dir }}/"
-    mode: '0644'
-
-- name: Extract Tomcat archive
-  unarchive:
-    src: "{{ tomcat_install_dir }}/{{ tomcat_archive }}"
-    dest: "{{ tomcat_install_dir }}"
-    remote_src: yes
-
-- name: Set ownership on Tomcat directory
-  file:
-    path: "{{ tomcat_home }}"
-    state: directory
-    recurse: yes
-    owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
-
-- name: Deploy tomcat-users.xml
-  copy:
-    src: tomcat-users.xml
-    dest: "{{ tomcat_home }}/conf/tomcat-users.xml"
-    owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
-  notify: Restart Tomcat
-
-- name: Deploy systemd unit file
-  template:
-    src: tomcat.service.j2
-    dest: /etc/systemd/system/tomcat.service
-    mode: '0644'
-  notify: Reload Systemd
-
-- name: Enable and start Tomcat
-  service:
-    name: tomcat
-    state: started
-    enabled: yes
-```
-
----
-
-### 🔁 `handlers/main.yml`
-
-```yaml
----
-- name: Reload Systemd
-  systemd:
-    daemon_reload: yes
-
-- name: Restart Tomcat
-  service:
-    name: tomcat
-    state: restarted
-```
-
----
-
-### ▶️ `tomcat.yml` – Main Playbook
-
-```yaml
----
-- name: Advanced Tomcat Deployment
-  hosts: tomcat
-  become: yes
-
+- name: Setup Tomcat using role
+  hosts: localhost
+  become: true
   roles:
     - tomcat
 ```
 
+Run this with:
+
+```bash
+ansible-playbook playbook.yml
+```
+
 ---
 
-## ✅ Key Advantages
+## 🧠 Key Concepts for Students
 
-| Feature            | Benefit                                      |
-| ------------------ | -------------------------------------------- |
-| Parameterized Vars | Flexible for different versions/environments |
-| Templates          | Dynamic systemd service configuration        |
-| Handlers           | Efficient, conditional restarts              |
-| Separation         | Clean separation of config, logic, data      |
-| Secure Users       | Prevents unauthorized access to manager-gui  |
+| Concept         | Explanation                                                         |
+| --------------- | ------------------------------------------------------------------- |
+| **Role**        | A modular way to organize playbooks into reusable components.       |
+| **Handlers**    | Special tasks triggered by other tasks (like restarting a service). |
+| **Variables**   | Values that can be reused and overridden across tasks.              |
+| **Idempotency** | Ensures tasks do not repeat actions unnecessarily.                  |
+| **systemd**     | A system and service manager used by most modern Linux systems.     |
 
