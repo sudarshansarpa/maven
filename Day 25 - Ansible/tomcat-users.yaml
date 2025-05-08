@@ -27,7 +27,7 @@
               <role rolename="admin-gui" />
               <role rolename="admin-script" />
 
-              <user username="tomcat1" password="tomcat" roles="manager-gui,admin-script, admin-gui,manager-status,manager-script,manager-jmx"/>
+              <user username="tomcat" password="tomcat" roles="manager-gui,admin-script, admin-gui,manager-status,manager-script,manager-jmx"/>
 
 
 <!--
