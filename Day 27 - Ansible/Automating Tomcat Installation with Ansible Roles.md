@@ -245,7 +245,7 @@ This lets systemd manage Tomcat as a background service.
 
 ---
 
-## 🧪 Sample `playbook.yml` to Call This Role
+## 🧪 Sample `tomcat.yml` to Call This Role
 
 ```yaml
 ---
@@ -259,7 +259,7 @@ This lets systemd manage Tomcat as a background service.
 Run this with:
 
 ```bash
-ansible-playbook playbook.yml
+ansible-playbook tomcat.yml
 ```
 
 ---
