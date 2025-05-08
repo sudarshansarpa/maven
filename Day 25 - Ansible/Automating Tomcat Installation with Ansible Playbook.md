@@ -137,6 +137,22 @@ Creates a new user named `tomcat` and adds it to the `tomcat` group.
 
 Checks if the Tomcat archive file is already downloaded.
 
+#### `stat`
+
+* This is an Ansible **module**.
+* It is used to **retrieve information** about a file or directory on the remote machine (like whether it exists, its size, permissions, etc.).
+* In this example, it's checking the **file metadata** of the Tomcat tarball at the path `{{ tomcat_tarball }}`.
+
+#### `register: tomcat_tarball_stat`
+
+* This stores the **result** of the `stat` module in a **variable** named `tomcat_tarball_stat`.
+* This variable will now contain a dictionary of facts like:
+
+  * `tomcat_tarball_stat.stat.exists` (boolean indicating if the file exists),
+  * `tomcat_tarball_stat.stat.size` (file size in bytes),
+  * `tomcat_tarball_stat.stat.mode` (permissions),
+  * and more.
+  * 
 ```yaml
 - name: Download Apache Tomcat
   get_url:
