@@ -20,7 +20,6 @@
               xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
               version="1.0">
 
-              <tomcat-users>
                 <role rolename="manager-gui" />
               <role rolename="manager-status" />
               <role rolename="manager-script" />
@@ -30,7 +29,6 @@
 
               <user username="tomcat1" password="tomcat" roles="manager-gui,admin-script, admin-gui,manager-status,manager-script,manager-jmx"/>
 
-              </tomcat-users>
 
 <!--
   NOTE:  By default, no user is included in the "manager-gui" role required
